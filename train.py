@@ -18,7 +18,7 @@ parser.add_argument('--list_dir', type=str,
                     default='./lists/lists_Synapse', help='list dir')
 parser.add_argument('--num_classes', type=int,
                     default=2, help='output channel of network')
-parser.add_argument('--output_dir', type=str, help='output dir')                   
+parser.add_argument('--output_dir', type=str,default='./output_dir', help='output dir')
 parser.add_argument('--max_iterations', type=int,
                     default=30000, help='maximum epoch number to train')
 parser.add_argument('--max_epochs', type=int,
@@ -34,7 +34,7 @@ parser.add_argument('--img_size', type=int,
                     default=224, help='input patch size of network input')
 parser.add_argument('--seed', type=int,
                     default=1234, help='random seed')
-parser.add_argument('--cfg', type=r'configs/swin_tiny_patch4_window7_224_lite.yaml', required=False, metavar="FILE", help='path to config file', )
+parser.add_argument('--cfg', type=str,default=r'configs/swin_tiny_patch4_window7_224_lite.yaml', required=False, metavar="FILE", help='path to config file', )
 parser.add_argument(
         "--opts",
         help="Modify config options by adding 'KEY VALUE' pairs. ",
