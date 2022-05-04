@@ -64,13 +64,23 @@ class Synapse_dataset(Dataset):
             data = np.load(data_path)
             image, label = data['image'], data['label']
         else:
-            vol_name = self.sample_list[idx].strip('\n')
-            filepath = self.data_dir + "/{}.npy.h5".format(vol_name)
-            data = h5py.File(filepath)
-            image, label = data['image'][:], data['label'][:]
-
+            # vol_name = self.sample_list[idx].strip('\n')
+            # filepath = self.data_dir + "/{}.npy.h5".format(vol_name)
+            # data = h5py.File(filepath)
+            # image, label = data['image'][:], data['label'][:]
+            slice_name = self.sample_list[idx].strip('\n')
+            data_path = os.path.join(self.data_dir, slice_name + '.npz')
+            data = np.load(data_path)
+            image, label = data['image'], data['label']
+            # 改，numpy转tensor
+            image = torch.from_numpy(image.astype(np.float32))
+            image = image.permute(2, 0, 1)
+            label = torch.from_numpy(label.astype(np.float32))
         sample = {'image': image, 'label': label}
         if self.transform:
             sample = self.transform(sample)
         sample['case_name'] = self.sample_list[idx].strip('\n')
         return sample
+
+
+
