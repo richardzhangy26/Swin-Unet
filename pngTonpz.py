@@ -1,7 +1,7 @@
 import glob
 import numpy as np
 import cv2
-path = r'/content/Swin-Unet/data/Lung Segmentation/CXR_png/*.png'
+path = r'/content/Swin-Unet/data/Lung Segmentation/*.png'
 path_label = r'/content/Swin-Unet/data/Lung Segmentation/masks/'
 path2 = r'/content/Swin-Unet/data/Synapse/train_npz/'
 for i,img_path in enumerate(glob.glob(path)):
